@@ -2,3 +2,7 @@
 .project
 .pydevproject
 .DS_Store
+#bower_component directory
+app/bower_components
+# idea
+.idea

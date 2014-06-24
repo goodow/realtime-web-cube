@@ -125,11 +125,17 @@ function onFileLoaded(doc) {
   var model = doc.getModel();
   movesList = model.getRoot().get(MOVES_KEY);
 
-  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, onCollaboratorsChanged);
-  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, onCollaboratorsChanged);
+//  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, onCollaboratorsChanged);
+//  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, onCollaboratorsChanged);
 
-  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_ADDED, onMovesListValuesAdded);
-  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_REMOVED, onMovesListValuesRemoved);
+  doc.onCollaboratorJoined(rtpg.collaborators.onCollaboratorJoined);
+  doc.onCollaboratorLeft(rtpg.collaborators.onCollaboratorLeft);
+
+//  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_ADDED, onMovesListValuesAdded);
+//  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_REMOVED, onMovesListValuesRemoved);
+
+  rtpg.list.field.onValuesAdded(rtpg.list.onRealtimeAdded);
+  rtpg.list.field.onValuesRemoved(rtpg.list.onRealtimeRemoved);
 
   setTimeout(function() {
     updateForRealTimeDoneInitializing();

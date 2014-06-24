@@ -1,0 +1,12 @@
+{
+  "name": "realtime-web-cube",
+  "description": "Goodow Web cube build with the Realtime API",
+  "version": "0.1.0",
+  "homepage": "https://github.com/goodow/realtime-web-cube",
+  "dependencies": {
+    "realtime-channel": "gh-pages",
+    "realtime-store": "gh-pages",
+    "vertxbus": "v2.1",
+    "google-diff-match-patch-js": "1.0.0"
+  }
+}
