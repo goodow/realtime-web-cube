@@ -2,3 +2,24 @@
 .project
 .pydevproject
 .DS_Store
+# Generated for IntelliJ IDEA.
+.idea/
+*.ipr
+*.iws
+*.iml
+# Generated for Eclipse.
+.settings/
+.project
+.classpath
+bin/
+gen/
+#bower_components
+app/bower_components/
+# npm and other log file
+*.log
+#gedit backup file
+*~
+# vi crash temp file
+*.swp
+# generate by npm
+node_modules/

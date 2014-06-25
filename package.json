@@ -1,0 +1,22 @@
+{
+  "name": "realtime-web-cube",
+  "version": "0.0.0",
+  "description": "realtime-web-cube build with Goodow Realtime API",
+  "scripts": {
+    "test": "echo \"travis test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goodow/realtime-web-cube.git"
+  },
+  "keywords": [
+    "cube",
+    "Goodow Realtime API"
+  ],
+  "devDependencies": {
+    "bower": "^1.3.5",
+    "gulp": "^3.6.0",
+    "browser-sync": "^1.1.1"
+  },
+  "readmeFilename": "README.md"
+}
