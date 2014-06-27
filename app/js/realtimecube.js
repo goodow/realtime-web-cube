@@ -284,14 +284,14 @@ function initPreviousCubeMoves() {
 function onMovesListValuesAdded(e) {
   logDebug('Moves List Values Added:');
   logDebug(e);
-  processIncomingMovesAdded(e.values, false /* opt_skipAnimation */);
+  processIncomingMovesAdded(e.values(), false /* opt_skipAnimation */);
 }
 
 function onMovesListValuesRemoved(e) {
   setTimeout(function() {
     logDebug('Moves List Values Removed:');
     logDebug(e);
-    processIncomingMovesRemoved(e.values);
+    processIncomingMovesRemoved(e.values());
   }.bind(this), 0);
 }
 
