@@ -164,7 +164,7 @@ function removeAbsentCollaborators() {
     var found = false;
     for (var j = 0; i < updatedCollaborators.length; j++) {
       var updatedCollaborator = updatedCollaborators[j];
-      if (domSessionId == updatedCollaborator.sessionId) {
+      if (domSessionId == updatedCollaborator.sessionId()) {
         // Found, do not remove
         found = true;
         break;
@@ -231,9 +231,9 @@ function genCollaboratorDiv(collaborator) {
 
   var imgDiv = document.createElement('img');
   imgDiv.setAttribute('class', 'collaborator-image shadow');
-  imgDiv.setAttribute('title', collaborator.displayName);
-  imgDiv.setAttribute('alt', collaborator.displayName);
-  imgDiv.setAttribute('src', collaborator.photoUrl);
+  imgDiv.setAttribute('title', collaborator.displayName());
+  imgDiv.setAttribute('alt', collaborator.displayName());
+  imgDiv.setAttribute('src', collaborator.photoUrl());
 
   collaboratorDiv.appendChild(imgDiv);
   return collaboratorDiv;
@@ -248,7 +248,7 @@ function collaboratorExists(collaborator) {
 }
 
 function getCollaboratorDiv(collaborator) {
-  return getCollaboratorDivBySessionId(collaborator.sessionId);
+  return getCollaboratorDivBySessionId(collaborator.sessionId());
 }
 
 function getCollaboratorDivBySessionId(sessionId) {
@@ -256,7 +256,7 @@ function getCollaboratorDivBySessionId(sessionId) {
 }
 
 function getIdForCollaboratorDiv(collaborator) {
- return getIdForCollaboratorDivBySessionId(collaborator.sessionId);
+ return getIdForCollaboratorDivBySessionId(collaborator.sessionId());
 }
 
 function getIdForCollaboratorDivBySessionId(sessionId) {
@@ -278,14 +278,14 @@ function initPreviousCubeMoves() {
 function onMovesListValuesAdded(e) {
   logDebug('Moves List Values Added:');
   logDebug(e);
-  processIncomingMovesAdded(e.values, false /* opt_skipAnimation */);
+  processIncomingMovesAdded(e.values(), false /* opt_skipAnimation */);
 }
 
 function onMovesListValuesRemoved(e) {
   setTimeout(function() {
     logDebug('Moves List Values Removed:');
     logDebug(e);
-    processIncomingMovesRemoved(e.values);
+    processIncomingMovesRemoved(e.values());
   }.bind(this), 0);
 }
 
