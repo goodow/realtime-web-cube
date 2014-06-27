@@ -25,7 +25,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // Watch Files For Changes & Reload
-gulp.task('server', function () {
+gulp.task('serve', function () {
   browserSync.init({
     server: {
       baseDir: ['app', '.tmp']
@@ -35,7 +35,6 @@ gulp.task('server', function () {
 
   gulp.watch(['app/*.html'], reload);
   gulp.watch(['app/css/**/*.{css,scss}'], reload);
-  gulp.watch(['.tmp/styles/**/*.css'], reload);
-  gulp.watch(['app/scripts/**/*.js'], reload);
+  gulp.watch(['app/js/**/*.js'], reload);
   gulp.watch(['app/images/**/*'], reload);
 });

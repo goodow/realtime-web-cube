@@ -17,57 +17,11 @@
 var VERSION = 'v1.0';
 var IS_DEBUG = false;
 
-/**
- * Options for the RealTime loader.
- */
-var realTimeOptions = {
-  /**
-   * Client ID from the API console.
-   */
-   clientId: YOUR_CLIENTID_HERE,
-
-  /**
-   * Application ID from the API console.
-   */
-   appId: YOUR_APP_ID_HERE,
-
-  /**
-   * Function to be called when a RealTime model is first created.
-   */
-  initializeModel: initializeModel,
-
-  /**
-   * Function to be called every time a RealTime file is loaded.
-   */
-  onFileLoaded: onFileLoaded,
-
-  /**
-   * ID of the auth button.
-   */
-  authButtonElementId: 'authorizeButton',
-
-  /**
-   * Automatically create file after auth.
-   */
-  autoCreate: true,
-
-  /**
-   * Name of new files that gets created.
-   */
-  defaultTitle: 'Realtime Cube'
-};
-
-function showShareDialog() {
-  var shareClient = new gapi.drive.share.ShareClient(realTimeOptions.appId);
-  shareClient.setItemIds(rtclient.params['fileId']);
-  shareClient.showSettingsDialog();
-}
-
-
 function startRealtimeCube() {
   logDebug('Starting Realtime Cube');
-  var realTimeLoader = new rtclient.RealtimeLoader(realTimeOptions);
-  realTimeLoader.start(function(){document.getElementById("loading").style.display = ''});
+  window.store = new realtime.store.StoreImpl("http://realtime.goodow.com:1986/channel",null);
+  window.bus = store.getBus();
+  store.load('cube/1',onFileLoaded,initializeModel,null);
 }
 
 var AXIS_X = 'x';
