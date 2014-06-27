@@ -125,11 +125,17 @@ function onFileLoaded(doc) {
   var model = doc.getModel();
   movesList = model.getRoot().get(MOVES_KEY);
 
-  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, onCollaboratorsChanged);
-  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, onCollaboratorsChanged);
+//  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, onCollaboratorsChanged);
+//  doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, onCollaboratorsChanged);
 
-  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_ADDED, onMovesListValuesAdded);
-  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_REMOVED, onMovesListValuesRemoved);
+  collabDoc.onCollaboratorJoined(onCollaboratorsChanged);
+  collabDoc.onCollaboratorLeft(onCollaboratorsChanged);
+
+//  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_ADDED, onMovesListValuesAdded);
+//  movesList.addEventListener(gapi.drive.realtime.EventType.VALUES_REMOVED, onMovesListValuesRemoved);
+
+  movesList.onValuesAdded(onMovesListValuesAdded);
+  movesList.onValuesRemoved(onMovesListValuesRemoved);
 
   setTimeout(function() {
     updateForRealTimeDoneInitializing();
@@ -278,14 +284,14 @@ function initPreviousCubeMoves() {
 function onMovesListValuesAdded(e) {
   logDebug('Moves List Values Added:');
   logDebug(e);
-  processIncomingMovesAdded(e.values, false /* opt_skipAnimation */);
+  processIncomingMovesAdded(e.values(), false /* opt_skipAnimation */);
 }
 
 function onMovesListValuesRemoved(e) {
   setTimeout(function() {
     logDebug('Moves List Values Removed:');
     logDebug(e);
-    processIncomingMovesRemoved(e.values);
+    processIncomingMovesRemoved(e.values());
   }.bind(this), 0);
 }
 
