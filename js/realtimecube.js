@@ -15,13 +15,13 @@
  */
 
 var VERSION = 'v1.0';
-var IS_DEBUG = false;
+var IS_DEBUG = true;
 
 function startRealtimeCube() {
   logDebug('Starting Realtime Cube');
-  window.store = new realtime.store.StoreImpl("http://realtime.goodow.com:1986/channel",null);
+  window.store = new realtime.store.StoreImpl("https://realtime.goodow.com/channel",null);
   window.bus = store.getBus();
-  store.load('cube/1',onFileLoaded,initializeModel,null);
+  store.load('cube/1', onFileLoaded, initializeModel, null);
 }
 
 var AXIS_X = 'x';
@@ -46,7 +46,7 @@ var collabDoc;
  * model. In this case, we just create the single string model that will be
  * used to control our text box. The string has a starting value of 'Hello
  * RealTime World!', and is named 'text'.
- * @param model {gapi.drive.realtime.Model} the RealTime root model object.
+ * @param model {realtime.store.Model} the RealTime root model object.
  */
 function initializeModel(model) {
   logDebug('initializeModel');
@@ -68,7 +68,7 @@ function updateForRealTimeDoneInitializing() {
  * be used to initialize any user interface components and event handlers
  * depending on the RealTime model. In this case, create a text control binder
  * and bind it to our string model that we created in initializeModel.
- * @param doc {gapi.drive.realtime.Document} the RealTime document.
+ * @param doc {realtime.store.Document} the RealTime document.
  */
 function onFileLoaded(doc) {
   logDebug('onFileLoaded');
