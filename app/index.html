@@ -1,16 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
-    <title>Realtime Cube</title>
+    <title>Realtime Web Cube</title>
     <meta http-equiv="X-UA-Compatible" content="IE=9">
 
     <!-- Load the RealTime libraries. -->
     <script type="text/javascript"
-            src="https://apis.google.com/js/api.js"></script>
+            src="bower_components/realtime-store/realtime-store.js"></script>
 
-    <!-- Load the utility library. -->
-    <script type="text/javascript"
-            src="js/realtime-client-utils.js"></script>
+    <script type="text/javascript" src="bower_components/bower-sockjs-client/sockjs.min.js"></script>
 
     <script type="text/javascript" src="js/realtimecube.js"></script>
 
@@ -26,20 +24,16 @@
   <!-- Start RealTime when the body has loaded. -->
   <body onLoad='startRealtimeCube()'>
 
-
     <div class="container">
 
       <img id="logo" src="images/icon_128.png">
       <div class="main-heading-1">Realtime Cube</div>
-      <div class="main-heading-2">A 3D collaborative puzzle cube built using the <a target="_blank" href="https://developers.google.com/drive/realtime/">Google Drive Realtime API</a></div>
+      <div class="main-heading-2">A 3D collaborative puzzle cube built using the <a target="_blank" href="https://github.com/goodow/realtime-store">Goodow Realtime Store API</a></div>
       <hr>
-      <button id="authorizeButton" disabled class="button button-submit">Authorize for Google Drive</button>
-
       <div id="collaborators">
           <div id="title"><b>Collaborators:</b></div>
           <div id="collaborators-container">
           </div>
-          <button id="shareButton" class="button button-share" onclick="showShareDialog()">Share</button>
       </div>
 
       <div id="loading" style="display: none">
@@ -60,11 +54,11 @@
 
     </div>
 
-    <a href="https://github.com/googledrive/realtime-cube"><img style="position: fixed; bottom: 0; right: 0; border: 0;" src="/images/github.png" alt="Fork me on GitHub"></a>
+    <a href="https://github.com/goodow/realtime-web-cube"><img style="position: fixed; bottom: 0; right: 0; border: 0;" src="images/github.png" alt="Fork me on GitHub"></a>
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-25993200-5']);
+      _gaq.push(['_setAccount', 'UA-52163425-1']);
       _gaq.push(['_trackPageview']);
 
       (function() {

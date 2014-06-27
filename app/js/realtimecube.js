@@ -15,59 +15,13 @@
  */
 
 var VERSION = 'v1.0';
-var IS_DEBUG = false;
-
-/**
- * Options for the RealTime loader.
- */
-var realTimeOptions = {
-  /**
-   * Client ID from the API console.
-   */
-   clientId: YOUR_CLIENTID_HERE,
-
-  /**
-   * Application ID from the API console.
-   */
-   appId: YOUR_APP_ID_HERE,
-
-  /**
-   * Function to be called when a RealTime model is first created.
-   */
-  initializeModel: initializeModel,
-
-  /**
-   * Function to be called every time a RealTime file is loaded.
-   */
-  onFileLoaded: onFileLoaded,
-
-  /**
-   * ID of the auth button.
-   */
-  authButtonElementId: 'authorizeButton',
-
-  /**
-   * Automatically create file after auth.
-   */
-  autoCreate: true,
-
-  /**
-   * Name of new files that gets created.
-   */
-  defaultTitle: 'Realtime Cube'
-};
-
-function showShareDialog() {
-  var shareClient = new gapi.drive.share.ShareClient(realTimeOptions.appId);
-  shareClient.setItemIds(rtclient.params['fileId']);
-  shareClient.showSettingsDialog();
-}
-
+var IS_DEBUG = true;
 
 function startRealtimeCube() {
   logDebug('Starting Realtime Cube');
-  var realTimeLoader = new rtclient.RealtimeLoader(realTimeOptions);
-  realTimeLoader.start(function(){document.getElementById("loading").style.display = ''});
+  window.store = new realtime.store.StoreImpl("https://realtime.goodow.com/channel",null);
+  window.bus = store.getBus();
+  store.load('cube/1', onFileLoaded, initializeModel, null);
 }
 
 var AXIS_X = 'x';
@@ -92,7 +46,7 @@ var collabDoc;
  * model. In this case, we just create the single string model that will be
  * used to control our text box. The string has a starting value of 'Hello
  * RealTime World!', and is named 'text'.
- * @param model {gapi.drive.realtime.Model} the RealTime root model object.
+ * @param model {realtime.store.Model} the RealTime root model object.
  */
 function initializeModel(model) {
   logDebug('initializeModel');
@@ -114,7 +68,7 @@ function updateForRealTimeDoneInitializing() {
  * be used to initialize any user interface components and event handlers
  * depending on the RealTime model. In this case, create a text control binder
  * and bind it to our string model that we created in initializeModel.
- * @param doc {gapi.drive.realtime.Document} the RealTime document.
+ * @param doc {realtime.store.Document} the RealTime document.
  */
 function onFileLoaded(doc) {
   logDebug('onFileLoaded');
