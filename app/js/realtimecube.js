@@ -188,6 +188,7 @@ function genCollaboratorDiv(collaborator) {
   imgDiv.setAttribute('title', collaborator.displayName());
   imgDiv.setAttribute('alt', collaborator.displayName());
   imgDiv.setAttribute('src', collaborator.photoUrl());
+  imgDiv.setAttribute('style',"background-color:"+collaborator.color());
 
   collaboratorDiv.appendChild(imgDiv);
   return collaboratorDiv;
