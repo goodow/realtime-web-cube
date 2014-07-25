@@ -9,3 +9,5 @@
 Realtime Cube allows you to play to a well known colored cube puzzle collaboratively.
 
 You can try out Realtime Cube on its [live instance](http://goodow.github.io/realtime-web-cube/).
+
+Visit [Google groups](https://groups.google.com/forum/#!forum/goodow-realtime) for discussions and announcements.
